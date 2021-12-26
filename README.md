@@ -20,9 +20,22 @@ ctx, cancel := context.WithCancel(context.Background())
 
 B）signal.Notify 方法可以监听中断信号，并放在channel中，可以在不同的goroutine中安全传递信号
 
-C) group, errCtx := errgroup.WithContext(ctx) 可以并发执行多个任务，一个任务失败则整个group执行结束，且只在第一次发生err的时候赋值给errCtx
+C) group, errCtx := ~errgroup.WithContext(ctx) 可以并发执行多个任务，一个任务失败则整个group执行结束，且只在第一次发生err的时候赋值给errCtx
 
-D)
+### 3. 按照自己的构想，写一个项目满足基本的目录结构和工程，代码需要包含对数据层、业务层、API 注册，以及 main 函数对于服务的注册和启动，信号处理，使用 Wire 构建依赖。可以使用自己熟悉的框架。
+
+
+####关键知识点：
+
+A) 采用Gin网络框架，Gin是一个golang的微框架，封装比较优雅，API友好
+
+B) 数据ORM框架，采用的是 Gorm，是一个全功能的ORM框架，扩展性良好，社区活跃，文档齐全，使用体验类似java的 mybatis
+
+C）通过wire框架，实现依赖注入功能
+
+D) 整体项目采用类似MVC架构，分别是 数据访问层dao包(对象是dto),业务服务层service包(对象是entity),展示层 handler包(对象是vo)
+
+E) 代码组织参考  https://github.com/golang-standards/project-layout ，本项目主要有 api包,errors包，configs包，internal包，biz包等
 
 
 
