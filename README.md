@@ -37,5 +37,13 @@ D) 整体项目采用类似MVC架构，分别是 数据访问层dao包(对象是
 
 E) 代码组织参考  https://github.com/golang-standards/project-layout ，本项目主要有 api包,errors包，configs包，internal包，biz包等
 
+### 3.参考 Hystrix 实现一个滑动窗口计数器。
 
+A)  采用 container/ring 循环链表保存窗口的总访问次数，链表的每一个节点代表一秒内的访问次数
+
+B) 采用 time.NewTicker 在异步goroutine内，每秒滑动一次窗口，扔掉最老的循环链表的节点和访问次数
+
+C) 一旦窗口内访问次数超限，则限流，返回调用方http 429错误码和提示
+
+D) 每次请求进来，如果处理成功则增加访问次数，如果被限流了则不增加访问次数。
 
