@@ -37,7 +37,7 @@ D) 整体项目采用类似MVC架构，分别是 数据访问层dao包(对象是
 
 E) 代码组织参考  https://github.com/golang-standards/project-layout ，本项目主要有 api包,errors包，configs包，internal包，biz包等
 
-### 3.参考 Hystrix 实现一个滑动窗口计数器。
+### 4.参考 Hystrix 实现一个滑动窗口计数器。
 
 A)  采用 container/ring 循环链表保存窗口的总访问次数，链表的每一个节点代表一秒内的访问次数
 
