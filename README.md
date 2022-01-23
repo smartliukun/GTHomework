@@ -49,8 +49,7 @@ D) 每次请求进来，如果处理成功则增加访问次数，如果被限�
 
 ### 5. (A)使用 redis benchmark 工具, 测试 10 20 50 100 200 1k 5k 字节 value 大小，redis get set 性能。(B)写入一定量的 kv 数据, 根据数据大小 1w-50w 自己评估, 结合写入前后的 info memory 信息 , 分析上述不同 value 大小下，平均每个 key 的占用内存空间
 
-A)  采用 redis-benchmark 测试redis 在本人开发机读写性能，结论如下:
-value大小 10字节~10K字节的 get、set 读写性能大约 2万/秒，没有明显衰减，在value大小 100K字节开始，get/set 性能降低到 7K/秒;
+A)在本人开发机读写性能，结论如下:value大小 10K字节的 get、set 读写性能大约 2万/秒，没有明显衰减，在value大小 100K字节开始，get/set 性能降低到 7K/秒;
 另外对于 value 从10字节~5K字节过程中,lrange命令性能退化严重，当value为10字节的时候lrange(100) 为 1.3万/秒，当value为5K时为820/秒
 
 B)内存占用分析结论：redis的内存占用基本和数据量增长成正比，每个key的占用空间，基本是value值字节的大小
