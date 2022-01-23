@@ -1,0 +1,86 @@
+
+redis-benchmark
+机器配置：cpu r7 3600HZ,内存16GB,硬盘 evo970 512G
+
+
+C:\Users\86186>redis-benchmark -n 30000  -d 10 -q
+PING_INLINE: 18028.85 requests per second
+PING_BULK: 17783.05 requests per second
+SET: 18214.94 requests per second
+GET: 17751.48 requests per second
+INCR: 18018.02 requests per second
+LPUSH: 17595.31 requests per second
+RPUSH: 18281.54 requests per second
+LPOP: 19023.46 requests per second
+RPOP: 18105.01 requests per second
+SADD: 17835.91 requests per second
+HSET: 17996.40 requests per second
+SPOP: 18248.17 requests per second
+LPUSH (needed to benchmark LRANGE): 17910.45 requests per second
+LRANGE_100 (first 100 elements): 13210.04 requests per second
+LRANGE_300 (first 300 elements): 8678.04 requests per second
+LRANGE_500 (first 450 elements): 7025.76 requests per second
+LRANGE_600 (first 600 elements): 6122.45 requests per second
+MSET (10 keys): 16759.78 requests per second
+
+
+C:\Users\86186>redis-benchmark -n 30000  -d 1000 -q
+PING_INLINE: 20505.81 requests per second
+PING_BULK: 20876.83 requests per second
+SET: 18927.45 requests per second
+GET: 19442.64 requests per second
+INCR: 19280.21 requests per second
+LPUSH: 21216.41 requests per second
+RPUSH: 19749.83 requests per second
+LPOP: 21398.00 requests per second
+RPOP: 20818.88 requests per second
+SADD: 19354.84 requests per second
+HSET: 18007.20 requests per second
+SPOP: 18039.69 requests per second
+LPUSH (needed to benchmark LRANGE): 21382.75 requests per second
+LRANGE_100 (first 100 elements): 3461.01 requests per second
+LRANGE_300 (first 300 elements): 1304.86 requests per second
+LRANGE_500 (first 450 elements): 872.52 requests per second
+LRANGE_600 (first 600 elements): 674.67 requests per second
+MSET (10 keys): 18645.12 requests per second
+
+
+C:\Users\86186>redis-benchmark -n 30000  -d 5000 -q
+PING_INLINE: 20066.89 requests per second
+PING_BULK: 18621.97 requests per second
+SET: 20325.20 requests per second
+GET: 18645.12 requests per second
+INCR: 20675.40 requests per second
+LPUSH: 19083.97 requests per second
+RPUSH: 19317.45 requests per second
+LPOP: 19442.64 requests per second
+RPOP: 18303.84 requests per second
+SADD: 20547.95 requests per second
+HSET: 17533.61 requests per second
+SPOP: 19455.25 requests per second
+LPUSH (needed to benchmark LRANGE): 18226.00 requests per second
+LRANGE_100 (first 100 elements): 824.11 requests per second
+LRANGE_300 (first 300 elements): 277.47 requests per second
+LRANGE_500 (first 450 elements): 185.71 requests per second
+LRANGE_600 (first 600 elements): 140.45 requests per second
+MSET (10 keys): 11574.07 requests per second
+
+
+C:\Users\86186>redis-benchmark -n 10000  -d 100000 -q
+PING_INLINE: 18148.82 requests per second
+PING_BULK: 17761.99 requests per second
+SET: 8244.02 requests per second
+GET: 7052.19 requests per second
+INCR: 18115.94 requests per second
+LPUSH: 6150.06 requests per second
+RPUSH: 6112.47 requests per second
+LPOP: 6662.23 requests per second
+RPOP: 7168.46 requests per second
+SADD: 18083.18 requests per second
+HSET: 8176.61 requests per second
+SPOP: 17889.09 requests per second
+LPUSH (needed to benchmark LRANGE): 7513.15 requests per second
+LRANGE_100 (first 100 elements): 74.78 requests per second
+
+
+
