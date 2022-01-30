@@ -56,13 +56,13 @@ B)内存占用分析结论：redis的内存占用基本和数据量增长成正�
 
 ![img_1.png](img_1.png)
 
-### 6. (A)总结几种 socket 粘包的解包方式：fix length/delimiter based/length field based frame decoder。尝试举例其应用。(B)实现一个从 socket connection 中解码出 goim 协议的解码器。
-
-#### (A) 
+### 6. 网络编程
+#### (A)总结几种 socket 粘包的解包方式：fix length/delimiter based/length field based frame decoder。尝试举例其应用
 #### 1.fix length:发送端将每个数据包封装为固定长度（不够的可以通过补0填充），这样接收端每次从接收缓冲区中读取固定长度的数据就自然而然的把每个数据包拆分开来。该协议实现方式简单，适合同一种数据格式大量传输。
 #### 2.delimiter based:可以在数据包之间设置边界，如添加特殊符号，这样，接收端通过这个边界就可以将不同的数据包拆分开。比较适合长度不固定的数据结构，但是数据用途比较单一，或者要求传输速度数据量大。
 #### 3.length field based frame decoder 将报文划分为报文头/报文体，根据报文头中,Length字段确定报文体的长度，因此报文提的长度是可变的.比较灵活的协议，适用于用途比较多样的场景，例如IM系统，
 
-#### (B) 实现一个从 socket connection 中解码出 goim 协议的解码器。具体参考work6代码中的client.go 和server.go. 注意：goim协议参考的是github中的截图：https://github.com/Terry-Mao/goim/blob/master/docs/protocol.png
-####  1. goim协议头约定了 PackageLength 4bytes, HeaderLength 2bytes，Protocol Version 2byes，Operation 4bytes，SequenceId 4bytes，Body 长度为 Package length - Header length。
+#### (B) 实现一个从 socket connection 中解码出 goim 协议的解码器。
+#### 具体参考work6文件夹代码中的client.go 和server.go和common.go. 注意：goim协议参考的是github中的截图：https://github.com/Terry-Mao/goim/blob/master/docs/protocol.png
+####  1. goim协议头约定了 PackageLength 4bytes, HeaderLength 2bytes，Protocol Version 2byes，Operation 4bytes，SequenceId 4bytes，报文Body 长度为 Package length - Header length。
 ####  2. 先启动 server.go ，然后再启动client.go   就可观察到数据正常传输到 server端了 ，而且是按照goim协议。
