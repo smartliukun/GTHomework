@@ -81,38 +81,54 @@ $ redis-server.exe redis.windows.conf
 
 ####  4.本地启动kafka
 $ zookeeper-server-start.cmd config/zookeeper.properties
+
 $ kafka-server-start.sh config/server.properties
 
 ####  5.本地编译并启动服务
 GTHomework/work7/user_server$ go run main.go
+
 GTHomework/work7/prod_server$ go run main.go
+
 GTHomework/work7/trade_server$ go run main.go
+
 GTHomework/work7/bff_server$ go run main.go
 
 ####  6.本地测试服务
 ##### 6.(1)查询用户信息
 GET http://localhost:8080/api/user?userid=1
+
 RESPONSE    {"code":0,"data":{"Msg":"成功","UserId":1,"Name":"张三","Email":"zhangsan@qq.com","Age":18},"msg":"sucess"}
 
 #####  6.(2)查询商品信息
 GET http://localhost:8080/api/product?productid=1
+
 RESPONSE    {"code":0,"data":{"Msg":"成功","ProductId":1,"Name":"衣服","Price":1000,"Stock":100},"msg":"sucess"}
 
 #####  6.(3)用户购买商品
 POST    http://localhost:8080/api/trade
+
 BODY    {"userId":1,"productId":1,"productNum":1,"date":"2022-03-13"}
+
 RESPONSE    {"code": 0,"data": {"Msg": "成功","Cost": 1000},"msg": "sucess"}
 
 
 
 #### 本次项目参考了以下文档
 谷歌API设计指南：https://cloud.google.com/apis/design/standard_methods
+
 防止缓存击穿组件：https://pkg.go.dev/golang.org/x/sync/singleflight
+
 golang项目文件布局：https://github.com/golang-standards/project-layout/blob/master/README_zh.md
+
 golang的ORM组件：https://gorm.io/docs/
+
 kafka入门教程：https://kafka.apache.org/quickstart
+
 redis入门教程：https://www.runoob.com/redis/redis-install.html
+
 并发请求工具包：https://pkg.go.dev/golang.org/x/sync/errgroup
+
 gRPC组件介绍：https://grpc.io/docs/languages/go/quickstart/
+
 
 
