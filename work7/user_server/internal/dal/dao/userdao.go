@@ -21,7 +21,7 @@ func init() {
 }
 
 func (u *UserDao) FindUserById(userId int32) (user dto.User, err error) {
-	if err = u.DB.Model(&dto.User{}).Where("id = ?", userId).Take(&user).Error; err != nil {
+	if err = u.DB.Debug().Model(&dto.User{}).Where("id = ?", userId).Take(&user).Error; err != nil {
 		return
 	}
 	fmt.Printf("get user =%v", user)

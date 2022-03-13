@@ -21,7 +21,7 @@ func init() {
 }
 
 func (u *ProdDao) FindProductById(productId int32) (product dto.Product, err error) {
-	if err = u.DB.Model(&dto.Product{}).Where("product_id = ?", productId).Take(&product).Error; err != nil {
+	if err = u.DB.Debug().Model(&dto.Product{}).Where("product_id = ?", productId).Take(&product).Error; err != nil {
 		return
 	}
 	fmt.Printf("get user =%v", product)

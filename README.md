@@ -70,6 +70,9 @@ B)内存占用分析结论：redis的内存占用基本和数据量增长成正�
 
 ### 7. 毕业项目
 
+本地启动redis
+redis-server.exe redis.windows.conf
+
 GET http://localhost:8080/api/user?userid=1
 {"code":0,"data":{"Msg":"成功","UserId":1,"Name":"张三","Email":"zhangsan@qq.com","Age":18},"msg":"sucess"}
 
