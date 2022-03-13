@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "../api";
+
+// 指定等会文件生成出来的package
+package api;
+
+// 定义request
+message TradeRequest{
+  int32 UserId = 1;
+  int32 ProductId = 2;
+  int32 ProductNum = 3;
+  int32 Price = 4;
+  int64 Cost = 5;
+  string Date = 6;
+}
+
+// 定义response
+message TradeResponse{
+  int32 Code = 1;
+  string Msg = 2;
+  int32 TradeNo = 3;
+  int64 Cost = 4;
+}
+
+// 定义服务主体
+service TradeService{
+  // 定义方法
+  rpc Trade(TradeRequest) returns(TradeResponse);
+}

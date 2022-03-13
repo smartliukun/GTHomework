@@ -1,0 +1,26 @@
+syntax = "proto3";
+option go_package =  "../api";
+
+// 指定等会文件生成出来的package
+package api;
+
+// 定义request
+message QueryUserRequest{
+  int32 UserId = 1;
+}
+
+// 定义response
+message QueryUserResponse{
+  int32 Code = 1;
+  string Msg = 2;
+  int32 UserId = 3;
+  string Name = 4;
+  string Email = 5;
+  int32 Age = 6;
+}
+
+// 定义服务主体
+service UserService{
+  // 定义方法
+  rpc QueryUser(QueryUserRequest) returns(QueryUserResponse);
+}

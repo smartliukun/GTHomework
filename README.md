@@ -66,3 +66,13 @@ B)内存占用分析结论：redis的内存占用基本和数据量增长成正�
 #### 具体参考work6文件夹代码中的client.go 和server.go和common.go. 注意：goim协议参考的是github中的截图：https://github.com/Terry-Mao/goim/blob/master/docs/protocol.png
 ####  1. goim协议头约定了 PackageLength 4bytes, HeaderLength 2bytes，Protocol Version 2byes，Operation 4bytes，SequenceId 4bytes，报文Body 长度为 Package length - Header length。
 ####  2. 先启动 server.go ，然后再启动client.go   就可观察到数据正常传输到 server端了 ，而且是按照goim协议。
+
+
+### 7. 毕业项目
+
+GET http://localhost:8080/api/user?userid=1
+{"code":0,"data":{"Msg":"成功","UserId":1,"Name":"张三","Email":"zhangsan@qq.com","Age":18},"msg":"sucess"}
+
+http://localhost:8080/api/product?productid=1
+{"code":0,"data":{"Msg":"成功","ProductId":1,"Name":"衣服","Price":1000,"Stock":100},"msg":"sucess"}
+

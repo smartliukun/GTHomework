@@ -1,0 +1,5 @@
+
+
+protoc --go_out=plugins=grpc:../ user.proto
+protoc --go_out=plugins=grpc:../ product.proto
+protoc --go_out=plugins=grpc:../ trade.proto
