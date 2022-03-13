@@ -30,7 +30,7 @@ func (u *TradeDao) FindTrade(tradeNo int32) (trade dto.Trade, err error) {
 }
 
 func (u *TradeDao) CreateTrade(newTrade dto.Trade) (err error) {
-	if err = u.DB.Debug().Model(&dto.Trade{}).Create(newTrade).Error; err != nil {
+	if err = u.DB.Debug().Model(&dto.Trade{}).Create(&newTrade).Error; err != nil {
 		return
 	}
 	fmt.Printf("CreateTrade =%v", newTrade)

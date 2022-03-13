@@ -41,7 +41,6 @@ type TradeReq struct {
 	UserId     int32
 	ProductId  int32
 	ProductNum int32
-	Price      int32
 	Date       string
 }
 
@@ -63,10 +62,11 @@ func (u *TradeHandler) Trade(c *gin.Context) {
 		return nil
 	})
 
-	group.Go(func() error {
-		if innerResp, err := ProdHandlerImpl.ProdServiceClient.QueryProduct(groupCtx, &api.QueryProductRequest{ProductId: tradeReq.ProductId}); err != nil {
+	var productResp *api.QueryProductResponse
+	group.Go(func() (err error) {
+		if productResp, err = ProdHandlerImpl.ProdServiceClient.QueryProduct(groupCtx, &api.QueryProductRequest{ProductId: tradeReq.ProductId}); err != nil {
 			return err
-		} else if innerResp.Code != 0 {
+		} else if productResp.Code != 0 {
 			return errors.New("查询商品信息异常,UserId=" + strconv.Itoa(int(tradeReq.ProductId)))
 		}
 		return nil
@@ -81,8 +81,8 @@ func (u *TradeHandler) Trade(c *gin.Context) {
 		UserId:     tradeReq.UserId,
 		ProductId:  tradeReq.ProductId,
 		ProductNum: tradeReq.ProductNum,
-		Price:      tradeReq.Price,
-		Cost:       int64(tradeReq.Price * tradeReq.ProductNum),
+		Price:      int32(productResp.Price),
+		Cost:       productResp.Price * int64(tradeReq.ProductNum),
 		Date:       tradeReq.Date,
 	}); err != nil {
 		utils.HandleErr(c, &err)
